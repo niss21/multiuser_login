@@ -2,19 +2,23 @@
 const mongoose = require('mongoose');
 
 const applicantSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
   name: {
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
+  // email: {
+  //   type: String,
+  //   required: true,
+  //   unique: true
+  // },
+  // password: {
+  //   type: String,
+  //   required: true
+  // },
   phoneNumber: {
     type: String,
     required: true
@@ -25,7 +29,9 @@ const applicantSchema = new mongoose.Schema({
     required: true
   },
   
-}, { timestamps: true });
+}, { timestamps: true },
+{ collation: { locale: "en" } }
+);
 
 const Applicant = mongoose.model('Applicant', applicantSchema);
 

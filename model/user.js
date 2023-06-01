@@ -1,15 +1,13 @@
 const mongoose = require("mongoose")
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
-
-const UserSchema = new Schema({
+const userSchema = new mongoose.Schema({
     
     email: {
+        type: mongoose.SchemaTypes.Email,
         unique: true,
-        type: String,
+        lowercase: true,
         required: true,
-    },
+      },
     password: {
         type: String,
         minLength: 8,
@@ -18,10 +16,16 @@ const UserSchema = new Schema({
     },
     role: {
         required: true,
-        type: String,
+        role: String,
         enum: ["recruiter", "applicant"]
     }
 
-});
+},
+{ collation: { locale: "en" } }
+);
 
-module.exports = mongoose.model("User", UserSchema)
+// module.exports = mongoose.model("User", UserSchema)
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
