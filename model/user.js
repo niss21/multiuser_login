@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+require("mongoose-type-email");
 
 const userSchema = new mongoose.Schema({
     
@@ -16,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         required: true,
-        role: String,
+        type: String,
         enum: ["recruiter", "applicant"]
     }
 
@@ -24,8 +25,10 @@ const userSchema = new mongoose.Schema({
 { collation: { locale: "en" } }
 );
 
-// module.exports = mongoose.model("User", UserSchema)
 
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+
+// module.exports = mongoose.model("User", UserSchema)

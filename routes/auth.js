@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const User = require("../model/user")
 const Recruiter = require('../model/recruiter');
 const Applicant = require('../model/applicant');
@@ -83,24 +84,25 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { email, password, role } = req.body;
+  // const data = req.body;/
 
   try {
     if (role === 'recruiter') {
-      const recruiter = await Recruiter.findOne({ email });
+      const user = await User.findOne({ email });
 
-      if (!recruiter || recruiter.password !== password) {
+      if (user.password !== password) {
         res.status(401).json({ message: 'Invalid email or password' });
       } else {
-        res.status(200).json({ message: 'Recruiter login successful' });
+        res.status(200).json({ message: 'user login successful' });
       }
     } else if (role === 'applicant') {
 
-      const applicant = await Applicant.findOne({ email });
+      const user = await User.findOne({ email });
 
-      if (!applicant || applicant.password !== password) {
+      if (user.password !== password) {
         res.status(401).json({ message: 'Invalid email or password' });
       } else {
-        res.status(200).json({ message: 'Applicant login successful' });
+        res.status(200).json({ message: 'user login successful' });
       }
     } else {
       res.status(400).json({ message: 'Invalid role' });
