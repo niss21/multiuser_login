@@ -70,36 +70,48 @@ router.post('/signup', async (req, res) => {
         education: data.education,
       });
 
-      userDetails.save().then(() => {
-        res.status(201).json(userDetails);
-      })
+    userDetails.save().then(() => {
+      res.status(201).json(userDetails);
+    })
       .catch((err) => {
         console.log(err);
       })
   })
-  .catch((error) => {
-    console.log(error);
-  })
+    .catch((error) => {
+      console.log(error);
+    })
 });
 
 router.post('/login', async (req, res) => {
   const { email, password, role } = req.body;
-  // const data = req.body;/
 
+  // const { email, password } = req.body;
+  // const data = req.body;
+
+  // console.log(req.body);
   try {
+    // console.log("here");
     if (role === 'recruiter') {
-      const user = await User.findOne({ email });
+      // const user = await User.findOne({ email });
+      let user_pass = await User.findOne({ email: req.body.email }).select("password");
 
-      if (user.password !== password) {
+      if (user_pass.password !== password) {
         res.status(401).json({ message: 'Invalid email or password' });
       } else {
         res.status(200).json({ message: 'user login successful' });
       }
-    } else if (role === 'applicant') {
+    }
+    else if (role === 'applicant') {
 
-      const user = await User.findOne({ email });
+      // const user = await User.findOne({ email });
+      // console.log("here");
+      // console.log(user);
 
-      if (user.password !== password) {
+      let user_pass = await User.findOne({ email }).select("password");
+      // console.log(user_pass);
+      // console.log(user_pass.password);
+      // console.log(password);
+      if (user_pass.password !== password) {
         res.status(401).json({ message: 'Invalid email or password' });
       } else {
         res.status(200).json({ message: 'user login successful' });
@@ -108,6 +120,7 @@ router.post('/login', async (req, res) => {
       res.status(400).json({ message: 'Invalid role' });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
