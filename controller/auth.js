@@ -70,6 +70,7 @@ const login = async (req, res, next) => {
                     token: token
                 })
             }
+            
         }
         return res.status(401).send({
             msg: "Invalid Credentials"

@@ -66,13 +66,10 @@ const JobsSchema = new Schema(
   vacancy: {
     type:String
   },
-  skills: {
+  category: {
     type: [String],
     required: true,
   },
-  category: {
-      type:String
-  },  
   posted_date: {
       type:Date
   },  

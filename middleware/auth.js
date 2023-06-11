@@ -16,7 +16,7 @@ const login_middeware = expressValidate([
 // ])
 
 const checkAuthentication = async (req, res, next) => {
-    // let logged = false;
+    let logged = false;
     let token = req.headers.authorization?.split(" ")[1] || null
     if (token) {
         try {
