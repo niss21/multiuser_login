@@ -664,7 +664,7 @@ mongoose-type-email@^1.1.2:
   dependencies:
     validator "^13.1.17"
 
-mongoose@^7.2.0:
+mongoose@^7.2.3:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-7.2.3.tgz#d20fa2a8beda9aae54b293d584ddda80d36febdf"
   integrity sha512-ClHD73HiqMk4hcOhdlZxluldokZfXvkrxjdKuqI7UQWLM71OIoy+n+OS+OHz4qJhS+/UaPzemQDKYtVrl4l0Ig==
